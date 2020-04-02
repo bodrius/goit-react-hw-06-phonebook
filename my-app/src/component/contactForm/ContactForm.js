@@ -42,6 +42,7 @@ class ContactForm extends Component {
             placeholder="Enter contact name..."
             onChange={this.handleChangeInput}
             minLength={5}
+            required
           />
           <h2 className={css.title}>Number</h2>
           <input
@@ -52,6 +53,7 @@ class ContactForm extends Component {
             value={number}
             onChange={this.handleChangeInput}
             minLength={5}
+            required
           />
           <button className={css.button__submit} type="submit">
             Add contact

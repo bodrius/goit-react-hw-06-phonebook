@@ -3,7 +3,8 @@ import ContactList from "./ContactList";
 
 const mapSTP = state => {
   return {
-    contacts: state.contacts
+    contacts: state.contacts,
+    filterName: state.filterName
   };
 };
 
