@@ -18,7 +18,7 @@ const initialState = {
 };
 
 const getContact = (state, { _, payload }) => {
-  return { ...state, contacts: [...state.contacts, payload] };
+  return { ...state, contacts: [...state.contacts, payload].reverse()};
 };
 const removeContact = (state, { _, payload }) => {
   return {
