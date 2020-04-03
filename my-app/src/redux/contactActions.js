@@ -11,9 +11,9 @@ export const deleteContact = id => ({
   payload: id
 });
 
-export const getNameFilter = (value) =>({
+export const getNameFilter = (filter) =>({
   type: contactTypes.FILTER_NAME,
-  payload: value
+  payload: {filter}
 })
 
 //ACTION - доставляют данные из компонентов в хранилище STORE

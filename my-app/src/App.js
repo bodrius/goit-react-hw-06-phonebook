@@ -32,6 +32,7 @@ class App extends React.Component {
   render() {
     const { animation } = this.state;
     const showFilter = this.props.return.contacts;
+    console.log(showFilter);
     return (
       <div className={css.container}>
         <CSSTransition
@@ -44,6 +45,7 @@ class App extends React.Component {
         </CSSTransition>
         <ContactForm handelSubmitForm={this.handelSubmitForm} />
         {showFilter.length > 2 && <Filter />}
+
         <ContactList deleteContact={this.deleteContact} />
       </div>
     );
