@@ -1,4 +1,5 @@
-import { contactTypes } from "../redux/contactTypes";
+import { addContact, deleteContact, getNameFilter } from "./contactActions";
+import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
   contacts: [
@@ -16,27 +17,49 @@ const initialState = {
   filterName: ""
 };
 
-export const rootReducer = (state = { ...initialState }, { type, payload }) => {
-  switch (type) {
-    case contactTypes.ADD_CONTACT:
-      return { ...state, contacts: [...state.contacts, payload] };
-
-    case contactTypes.REMOVE_CONTACT:
-      return {
-        ...state,
-        contacts: [...state.contacts.filter(contact => contact.id !== payload)]
-      };
-
-    case contactTypes.FILTER_NAME:
-      return {
-        ...state,
-        filterName: payload.filter
-      };
-
-    default:
-      return state;
-  }
+const getContact = (state, { _, payload }) => {
+  return { ...state, contacts: [...state.contacts, payload] };
 };
+const removeContact = (state, { _, payload }) => {
+  return {
+    ...state,
+    contacts: [...state.contacts.filter(contact => contact.id !== payload)]
+  };
+};
+const filterContact = (state, { _, payload }) => {
+  return { ...state, filterName: payload.filter };
+};
+
+export const rootReducer = createReducer(
+  { ...initialState },
+  {
+    [addContact]: getContact,
+    [deleteContact]: removeContact,
+    [getNameFilter]: filterContact
+  }
+);
+
+// export const rootReducer = (state = { ...initialState }, { type, payload }) => {
+//   switch (type) {
+//     case addContact.type:
+//       return { ...state, contacts: [...state.contacts, payload] };
+
+//     case deleteContact.type:
+//       return {
+//         ...state,
+//         contacts: [...state.contacts.filter(contact => contact.id !== payload)]
+//       };
+
+//     case getNameFilter.type:
+//       return {
+//         ...state,
+//         filterName: payload.filter
+//       };
+
+//     default:
+//       return state;
+//   }
+// };
 
 //Редюсеры (reducers) - это чистые функции, которые принимают предыдущее состояние
 // приложения и действие, а затем возвращают новое следующее состояние.
